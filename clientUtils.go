@@ -1,6 +1,9 @@
 package targetprocess
 
-import "net/url"
+import (
+	"fmt"
+	"net/url"
+)
 
 func generateTPAddress(account string) (string, error) {
 	address := tpSchema + account + tpBaseURL
@@ -9,4 +12,8 @@ func generateTPAddress(account string) (string, error) {
 		return "", err
 	}
 	return address, nil
+}
+
+func generateUserAgent(account string) string {
+	return fmt.Sprintf("targetprocess/%s golang api client. running for account %s", version, account)
 }
