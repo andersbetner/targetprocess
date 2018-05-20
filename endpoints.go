@@ -8,7 +8,7 @@ type Endpoint struct {
 func (c *TPClient) UserStories() *Endpoint {
 	ep := &Endpoint{
 		client:   c,
-		Endpoint: "UserStories",
+		Endpoint: "UserStories/",
 	}
 	return ep
 }
@@ -16,7 +16,7 @@ func (c *TPClient) UserStories() *Endpoint {
 func (c *TPClient) Bugs() *Endpoint {
 	ep := &Endpoint{
 		client:   c,
-		Endpoint: "Bugs",
+		Endpoint: "Bugs/",
 	}
 	return ep
 }
@@ -24,7 +24,7 @@ func (c *TPClient) Bugs() *Endpoint {
 func (c *TPClient) Epics() *Endpoint {
 	ep := &Endpoint{
 		client:   c,
-		Endpoint: "Epics",
+		Endpoint: "Epics/",
 	}
 	return ep
 }
@@ -32,7 +32,7 @@ func (c *TPClient) Epics() *Endpoint {
 func (c *TPClient) Features() *Endpoint {
 	ep := &Endpoint{
 		client:   c,
-		Endpoint: "Features",
+		Endpoint: "Features/",
 	}
 	return ep
 }
@@ -40,7 +40,7 @@ func (c *TPClient) Features() *Endpoint {
 func (c *TPClient) Tasks() *Endpoint {
 	ep := &Endpoint{
 		client:   c,
-		Endpoint: "Tasks",
+		Endpoint: "Tasks/",
 	}
 	return ep
 }
@@ -48,7 +48,7 @@ func (c *TPClient) Tasks() *Endpoint {
 func (c *TPClient) Requesters() *Endpoint {
 	ep := &Endpoint{
 		client:   c,
-		Endpoint: "Requesters",
+		Endpoint: "Requesters/",
 	}
 	return ep
 }
@@ -56,7 +56,7 @@ func (c *TPClient) Requesters() *Endpoint {
 func (c *TPClient) Users() *Endpoint {
 	ep := &Endpoint{
 		client:   c,
-		Endpoint: "Users",
+		Endpoint: "Users/",
 	}
 	return ep
 }
@@ -64,7 +64,7 @@ func (c *TPClient) Users() *Endpoint {
 func (c *TPClient) Assignables() *Endpoint {
 	ep := &Endpoint{
 		client:   c,
-		Endpoint: "Assignables",
+		Endpoint: "Assignables/",
 	}
 	return ep
 }
@@ -72,7 +72,7 @@ func (c *TPClient) Assignables() *Endpoint {
 func (c *TPClient) Generals() *Endpoint {
 	ep := &Endpoint{
 		client:   c,
-		Endpoint: "Generals",
+		Endpoint: "Generals/",
 	}
 	return ep
 }
@@ -80,20 +80,22 @@ func (c *TPClient) Generals() *Endpoint {
 func (c *TPClient) Projects() *Endpoint {
 	ep := &Endpoint{
 		client:   c,
-		Endpoint: "Projects",
+		Endpoint: "Projects/",
 	}
 	return ep
 }
 
-func (c *Endpoint) Get(queryParams queryParams) {
+func (c *Endpoint) Get(q queryParams) {
+	q.format = "json"
 	return
 }
 
-func (c *Endpoint) Post(queryParams queryParams, jsonParams jsonBodyParams) {
+func (c *Endpoint) Post(q queryParams, j jsonBodyParams) {
 	c.client = c.client.SetHeader("Content-type", "application/json")
+	q.format = "json"
 
 }
 
 func (c *Endpoint) Delete(id string) {
-
+	return
 }

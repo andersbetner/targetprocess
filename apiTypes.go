@@ -14,16 +14,36 @@ type queryParams struct {
 }
 
 type jsonBodyParams struct {
-	ID               int32  `json:"Id,omitempty"`
-	CreateDate       string `json:"CreateDate,omitempty"`
-	Name             string `json:"Name,omitempty"`
-	Description      string `json:"Description,omitempty"`
-	Tags             string `json:"Tags,omitempty"`
-	PlannedStartDate string `json:"PlannedStartDate,omitempty"`
-	PlannedEndDate   string `json:"PlannedEndDate,omitempty"`
-	Project          struct {
+	ID                  int32  `json:"Id,omitempty"`
+	FirstName           string `json:"FirstName,omitempty"`
+	LastName            string `json:"LastName,omitempty"`
+	Email               string `json:"Email,omitempty"`
+	Login               string `json:"Login,omitempty"`
+	Password            string `json:"Password,omitempty"`
+	ActiveDirectoryName string `json:"ActiveDirectoryName,omitempty"`
+	IsActive            bool   `json:"IsActive,omitempty"`
+	IsAdministrator     bool   `json:"IsAdministrator,omitempty"`
+	IsObserver          string `json:"IsObserver,omitempty"`
+	IsContributor       string `json:"IsContributor,omitempty"`
+	Locale              string `json:"Locale,omitempty"`
+	CreateDate          string `json:"CreateDate,omitempty"`
+	Name                string `json:"Name,omitempty"`
+	Description         string `json:"Description,omitempty"`
+	Tags                string `json:"Tags,omitempty"`
+	PlannedStartDate    string `json:"PlannedStartDate,omitempty"`
+	PlannedEndDate      string `json:"PlannedEndDate,omitempty"`
+	Project             struct {
 		ID int `json:"Id,omitempty"`
 	} `json:"Project,omitempty"`
+	UserStory struct {
+		ID int `json:"Id,omitempty"`
+	} `json:"UserStory,omitEmpty"`
+	Company struct {
+		ID int `json:"Id,omitempty"`
+	} `json:"Company,omitempty"`
+	EntityState struct {
+		ID int `json:"Id,omitempty"`
+	} `json:"EntityState,omitempty"`
 }
 
 type UserStoriesJSONBodyParams = jsonBodyParams
@@ -36,6 +56,7 @@ type FeaturesQueryParams = queryParams
 type FeaturesJSONBodyParams = jsonBodyParams
 type TasksQueryParams = queryParams
 type TasksJSONBodyParams = jsonBodyParams
+
 type RequestersQueryParams = queryParams
 type RequestersJSONBodyParams = jsonBodyParams
 type UsersQueryParams = queryParams
