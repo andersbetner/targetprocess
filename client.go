@@ -17,9 +17,6 @@ var (
 	// SSLTimeout specifies how long a HTTP client can wait for a SSL handshake to
 	// to complete
 	SSLTimeout = 10
-	// DialTimeout specifies how long a HTTP client will wait for a connection to
-	// be established with the remote service
-	DialTimeout = 10
 	// ConnectionTimeout specifies how a http client will wait for a response from
 	// the target server
 	ConnectionTimeout = 20

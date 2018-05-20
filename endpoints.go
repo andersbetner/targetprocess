@@ -85,11 +85,11 @@ func (c *TPClient) Projects() *Endpoint {
 	return ep
 }
 
-func (c *Endpoint) Get(queryParams struct{}) {
+func (c *Endpoint) Get(queryParams queryParams) {
 	return
 }
 
-func (c *Endpoint) Post(queryParams struct{}, bodyParams struct{}) {
+func (c *Endpoint) Post(queryParams queryParams, jsonParams jsonBodyParams) {
 	c.client = c.client.SetHeader("Content-type", "application/json")
 
 }
