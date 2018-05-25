@@ -32,9 +32,12 @@ type TPClient struct {
 	Token       string
 	Header      http.Header
 
-	httpClient *http.Client
-	scheme     string
-	userAgent  string
+	httpClient  *http.Client
+	scheme      string
+	userAgent   string
+	isBasicAuth bool
+	isAuthToken bool
+	isToken     bool
 }
 
 // NewBasicClient returns a new targetprocess api client
@@ -45,14 +48,34 @@ func NewBasicClient(account string, user string, pass string) (*TPClient, error)
 	if err != nil {
 		return nil, err
 	}
-	client = client.SetHeader("Authorization", (fmt.Sprintf("Basic %s", client.Token)))
+	client.isBasicAuth = true
+	client.SetHeader("Authorization", (fmt.Sprintf("Basic %s", client.Token)))
+	return client, nil
+}
+
+// NewAuthTokenClient return a new client using an Auth Token
+func NewAuthTokenClient(account, token string) (*TPClient, error) {
+	client, err := newClient(account, token)
+	if err != nil {
+		return nil, err
+	}
+	client.isAuthToken = true
+	return client, err
+}
+
+// NewTokenClient returns a new client using a api token
+func NewTokenClient(account, token string) (*TPClient, error) {
+	client, err := newClient(account, token)
+	if err != nil {
+		return nil, err
+	}
+	client.isToken = true
 	return client, nil
 }
 
 // SetHeader allows headers to manually be set
-func (c *TPClient) SetHeader(header string, value string) *TPClient {
-	c.Header.Set(header, value)
-	return c
+func (c *TPClient) SetHeader(header string, value string) {
+	c.Header.Add(header, value)
 }
 
 // func (c *TPClient) AddQueryParams() {}
@@ -65,7 +88,7 @@ func newClient(account string, token string) (*TPClient, error) {
 	client := &TPClient{
 		HostAddress: HostAddress,
 		Token:       token,
-		Header:      http.Header{},
+		Header:      make(http.Header),
 		httpClient:  getHTTPClient(),
 		scheme:      tpSchema,
 		userAgent:   generateUserAgent(account),

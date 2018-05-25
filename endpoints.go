@@ -85,17 +85,20 @@ func (c *TPClient) Projects() *Endpoint {
 	return ep
 }
 
-func (c *Endpoint) Get(q queryParams) {
+// Get queries the endpoint for existing data
+func (c *Endpoint) Get(q queryParams) (interface{}, BadRequest) {
 	q.format = "json"
-	return
+	return nil, BadRequest{}
 }
 
+// Post updates or creates objects
 func (c *Endpoint) Post(q queryParams, j jsonBodyParams) {
-	c.client = c.client.SetHeader("Content-type", "application/json")
+	c.client.SetHeader("Content-type", "application/json")
 	q.format = "json"
 
 }
 
+// Delete removes the given ID from the endpoint
 func (c *Endpoint) Delete(id string) {
 	return
 }
