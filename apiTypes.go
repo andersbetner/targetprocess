@@ -46,27 +46,26 @@ type jsonBodyParams struct {
 	} `json:"EntityState,omitempty"`
 }
 
-type UserStoriesJSONBodyParams = jsonBodyParams
-type UserStoriesQueryParams = queryParams
-type BugsQueryParams = queryParams
-type BugsJSONBodyParams = jsonBodyParams
-type EpicsQueryParams = queryParams
-type EpicsJSONBodyParams = jsonBodyParams
-type FeaturesQueryParams = queryParams
-type FeaturesJSONBodyParams = jsonBodyParams
-type TasksQueryParams = queryParams
-type TasksJSONBodyParams = jsonBodyParams
-
-type RequestersQueryParams = queryParams
-type RequestersJSONBodyParams = jsonBodyParams
-type UsersQueryParams = queryParams
-type UsersJSONBodyParams = jsonBodyParams
-type AssignablesQueryParams = queryParams
-type AssignabesJSONBodyParams = jsonBodyParams
-type GeneralsQueryParams = queryParams
-type GeneralsJSONBodyParams = jsonBodyParams
-type ProjectsQueryParams = queryParams
-type ProjectsJSONBodyParams = jsonBodyParams
+// type UserStoriesJSONBodyParams = jsonBodyParams
+// type UserStoriesQueryParams = queryParams
+// type BugsQueryParams = queryParams
+// type BugsJSONBodyParams = jsonBodyParams
+// type EpicsQueryParams = queryParams
+// type EpicsJSONBodyParams = jsonBodyParams
+// type FeaturesQueryParams = queryParams
+// type FeaturesJSONBodyParams = jsonBodyParams
+// type TasksQueryParams = queryParams
+// type TasksJSONBodyParams = jsonBodyParams
+// type RequestersQueryParams = queryParams
+// type RequestersJSONBodyParams = jsonBodyParams
+// type UsersQueryParams = queryParams
+// type UsersJSONBodyParams = jsonBodyParams
+// type AssignablesQueryParams = queryParams
+// type AssignabesJSONBodyParams = jsonBodyParams
+// type GeneralsQueryParams = queryParams
+// type GeneralsJSONBodyParams = jsonBodyParams
+// type ProjectsQueryParams = queryParams
+// type ProjectsJSONBodyParams = jsonBodyParams
 
 type UserStoriesGetResponse struct {
 	Next  string `json:"Next"`

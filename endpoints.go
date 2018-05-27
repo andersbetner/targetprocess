@@ -1,104 +1,151 @@
 package targetprocess
 
 type Endpoint struct {
-	client   *TPClient
-	Endpoint string
+	client *TPClient
+	target string
+	query  queryParams
+	json   jsonBodyParams
 }
 
-func (c *TPClient) UserStories() *Endpoint {
+const (
+	enpoints = map[int]string{
+		1: "UserStories",
+		2: "Bugs",
+		3: "Epics",
+		4: "Features",
+		5: "Tasks",
+		6: "Requesters",
+		7: "Users",
+		8: "Assignables",
+		9: "Generals",
+		10: "Projects",
+	}
+)
+
+// Response is the returned results from targetprocess with the sent
+// json and query parameters
+type Response struct {
+	QueryParams queryParams
+	JSONParams  jsonBodyParams
+	Results     interface{}
+}
+
+// UserStories query userstories
+func (c *TPClient) UserStories(q queryParams, j jsonBodyParams) *Endpoint {
 	ep := &Endpoint{
-		client:   c,
-		Endpoint: "UserStories/",
+		client: c,
+		target: c.HostAddress + "UserStories/",
+		query:  q,
+		json:   j,
+		endpoint: 
 	}
 	return ep
 }
 
-func (c *TPClient) Bugs() *Endpoint {
+func (c *TPClient) Bugs(q queryParams, j jsonBodyParams) *Endpoint {
 	ep := &Endpoint{
-		client:   c,
-		Endpoint: "Bugs/",
+		client: c,
+		target: c.HostAddress + "Bugs/",
+		query:  q,
+		json:   j,
 	}
 	return ep
 }
 
-func (c *TPClient) Epics() *Endpoint {
+func (c *TPClient) Epics(q queryParams, j jsonBodyParams) *Endpoint {
 	ep := &Endpoint{
-		client:   c,
-		Endpoint: "Epics/",
+		client: c,
+		target: c.HostAddress + "Epics/",
+		query:  q,
+		json:   j,
 	}
 	return ep
 }
 
-func (c *TPClient) Features() *Endpoint {
+func (c *TPClient) Features(q queryParams, j jsonBodyParams) *Endpoint {
 	ep := &Endpoint{
-		client:   c,
-		Endpoint: "Features/",
+		client: c,
+		target: c.HostAddress + "Features/",
+		query:  q,
+		json:   j,
 	}
 	return ep
 }
 
-func (c *TPClient) Tasks() *Endpoint {
+func (c *TPClient) Tasks(q queryParams, j jsonBodyParams) *Endpoint {
 	ep := &Endpoint{
-		client:   c,
-		Endpoint: "Tasks/",
+		client: c,
+		target: c.HostAddress + "Tasks/",
+		query:  q,
+		json:   j,
 	}
 	return ep
 }
 
-func (c *TPClient) Requesters() *Endpoint {
+func (c *TPClient) Requesters(q queryParams, j jsonBodyParams) *Endpoint {
 	ep := &Endpoint{
-		client:   c,
-		Endpoint: "Requesters/",
+		client: c,
+		target: c.HostAddress + "Requesters/",
+		query:  q,
+		json:   j,
 	}
 	return ep
 }
 
-func (c *TPClient) Users() *Endpoint {
+func (c *TPClient) Users(q queryParams, j jsonBodyParams) *Endpoint {
 	ep := &Endpoint{
-		client:   c,
-		Endpoint: "Users/",
+		client: c,
+		target: c.HostAddress + "Users/",
+		query:  q,
+		json:   j,
 	}
 	return ep
 }
 
-func (c *TPClient) Assignables() *Endpoint {
+func (c *TPClient) Assignables(q queryParams, j jsonBodyParams) *Endpoint {
 	ep := &Endpoint{
-		client:   c,
-		Endpoint: "Assignables/",
+		client: c,
+		target: c.HostAddress + "Assignables/",
+		query:  q,
+		json:   j,
 	}
 	return ep
 }
 
-func (c *TPClient) Generals() *Endpoint {
+func (c *TPClient) Generals(q queryParams, j jsonBodyParams) *Endpoint {
 	ep := &Endpoint{
-		client:   c,
-		Endpoint: "Generals/",
+		client: c,
+		target: c.HostAddress + "Generals/",
+		query:  q,
+		json:   j,
 	}
 	return ep
 }
 
-func (c *TPClient) Projects() *Endpoint {
+func (c *TPClient) Projects(q queryParams, j jsonBodyParams) *Endpoint {
 	ep := &Endpoint{
-		client:   c,
-		Endpoint: "Projects/",
+		client: c,
+		target: c.HostAddress + "Projects/",
+		query:  q,
+		json:   j,
 	}
 	return ep
 }
 
 // Get queries the endpoint for existing data
-func (c *Endpoint) Get(q queryParams) (interface{}, BadRequest) {
-	q.format = "json"
+func (e *Endpoint) Get() (interface{}, BadRequest) {
+	e.query.format = "json"
 	return nil, BadRequest{}
 }
 
 // Post updates or creates objects
-func (c *Endpoint) Post(q queryParams, j jsonBodyParams) {
-	c.client.SetHeader("Content-type", "application/json")
-	q.format = "json"
-
+func (e *Endpoint) Post() (interface{}, BadRequest) {
+	e.client.SetHeader("Content-type", "application/json")
+	e.query.format = "json"
+	return nil, BadRequest{}
 }
 
 // Delete removes the given ID from the endpoint
-func (c *Endpoint) Delete(id string) {
+func (e *Endpoint) Delete(id string) {
 	return
 }
