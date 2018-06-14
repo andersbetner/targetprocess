@@ -32,7 +32,7 @@ func TestClients(t *testing.T) {
 	})
 }
 
-func TestClientUtils(t *testing.T) {
+func TestClientPrivate(t *testing.T) {
 	Convey("Test Client util functionality", t, func() {
 		account := "md5"
 		token := "someTokenHere"
